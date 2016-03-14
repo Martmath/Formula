@@ -27,36 +27,36 @@ namespace Formula
         public static implicit operator int(WrapNumbers<BaseT> i)
         { return i.Get<int>(); }
         public static implicit operator WrapNumbers<BaseT>(int i)
-        { return WrapNumbers<BaseT>.Factory(i, T); }
+        { return WrapNumbers<BaseT>.Factory(i); }
 
         public static implicit operator long(WrapNumbers<BaseT> i)
         { return i.Get<long>(); }
         public static implicit operator WrapNumbers<BaseT>(long i)
-        { return WrapNumbers<BaseT>.Factory(i, T); }
+        { return WrapNumbers<BaseT>.Factory(i); }
 
         public static implicit operator double(WrapNumbers<BaseT> i)
         { return i.Get<double>(); }
         public static implicit operator WrapNumbers<BaseT>(double i)
-        { return WrapNumbers<BaseT>.Factory(i, T); }
+        { return WrapNumbers<BaseT>.Factory(i); }
 
         public static implicit operator decimal(WrapNumbers<BaseT> i)
         { return i.Get<decimal>(); }
         public static implicit operator WrapNumbers<BaseT>(decimal i)
-        { return WrapNumbers<BaseT>.Factory(i, T); }
+        { return WrapNumbers<BaseT>.Factory(i); }
 
         public static implicit operator char(WrapNumbers<BaseT> i)
         { return i.Get<string>()[0]; }
         public static implicit operator WrapNumbers<BaseT>(char i)
-        { return WrapNumbers<BaseT>.Factory(i.ToString(), T); }
+        { return WrapNumbers<BaseT>.Factory(i.ToString()); }
 
         public static implicit operator string(WrapNumbers<BaseT> i)
         { return i.Get<string>(); }
         public static implicit operator WrapNumbers<BaseT>(string i)
-        { return WrapNumbers<BaseT>.Factory(i, T); }
+        { return WrapNumbers<BaseT>.Factory(i); }
 
         public static implicit operator Func<object>(WrapNumbers<BaseT> i)
         { return i.Get<Func<object>>(); }
         public static implicit operator WrapNumbers<BaseT>(Func<object> i)
-        { return WrapNumbers<BaseT>.Factory(i, T); }
+        { return WrapNumbers<BaseT>.Factory(i); }
     }
 }

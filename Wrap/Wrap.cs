@@ -8,7 +8,8 @@ namespace Formula
     {
         public enum WType { Val, Formula };
         protected static Type TAlive = typeof(Func<object>);
-        protected static Type TT= typeof(T);  
+        protected static Type TT= typeof(T);
+        protected static Type TA = typeof(A);
         protected T Value;
         protected Func<object> Alive;
         public WType t;
@@ -75,10 +76,12 @@ namespace Formula
             R.Alive = this.Alive;
             return R;
         }
-        ///<summary>Get new obj initialized by "i" obj casted to type of second level inheritor of Wrap type (A)</summary> 
-        public static A Factory<B>(B i, Type T)//T for Multilevel Inheritance
-        {
-            var R = (A)ExtI.GetInstance(T);
+        ///<summary><para>
+        ///Get new obj initialized by "i" obj casted to input type inheritor(A).
+        ///</para><para>Without type forwarding its second level inheritor.</para></summary>   
+        public static A Factory<B>(B i, Type T=null)//T for Multilevel Inheritance
+        {           
+            var R = (A) ((T==null)?ExtI.GetInstance(TA): ExtI.GetInstance(T));
             if (!R.Set(i))
             {
                 MethodBase method = System.Reflection.MethodBase.GetCurrentMethod();             

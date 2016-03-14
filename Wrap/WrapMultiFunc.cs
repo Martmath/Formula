@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Formula
 {
     ///<summary>Add functionality for using some formulas (through L type labels)</summary> 
-    public abstract class WrapMultiFuncService<T, L> : Wrap<T, WrapMultiFuncService<T, L>>
+    public abstract class WrapMultiFuncService<T, L, M> : Wrap<T, M> where M : Wrap<T, M>//sly butt type forwarding 
     {
         protected static ExtT.DictListValNullable<L, Func<object>> FList;
         static WrapMultiFuncService()
@@ -33,7 +33,7 @@ namespace Formula
         }
     }
     ///<summary>Number class sample with autoconvert to/from primitive type obj and multiformulas</summary> 
-    public class WrapMultiFunc<BaseT> : WrapMultiFuncService<BaseT, string>
+    public class WrapMultiFunc<BaseT> : WrapMultiFuncService<BaseT, string, WrapMultiFunc<BaseT>>
     {
         private string NameF = null;
         public WrapMultiFunc() { Value = default(BaseT); }
@@ -44,32 +44,32 @@ namespace Formula
         public static implicit operator int(WrapMultiFunc<BaseT> i)
         { return i.Get<int>(); }
         public static implicit operator WrapMultiFunc<BaseT>(int i)
-        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i, T); }
+        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i); }
 
         public static implicit operator long(WrapMultiFunc<BaseT> i)
         { return i.Get<long>(); }
         public static implicit operator WrapMultiFunc<BaseT>(long i)
-        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i, T); }
+        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i); }//,T); }
 
         public static implicit operator double(WrapMultiFunc<BaseT> i)
         { return i.Get<double>(); }
         public static implicit operator WrapMultiFunc<BaseT>(double i)
-        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i, T); }
+        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i); }
 
         public static implicit operator decimal(WrapMultiFunc<BaseT> i)
         { return i.Get<decimal>(); }
         public static implicit operator WrapMultiFunc<BaseT>(decimal i)
-        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i, T); }
+        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i); }
 
         public static implicit operator char(WrapMultiFunc<BaseT> i)
         { return i.Get<string>()[0]; }
         public static implicit operator WrapMultiFunc<BaseT>(char i)
-        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i, T); }
+        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i); }
 
         public static implicit operator Func<object>(WrapMultiFunc<BaseT> i)
         { return i.Get<Func<object>>(); }
         public static implicit operator WrapMultiFunc<BaseT>(Func<object> i)
-        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i, T); }
+        { return (WrapMultiFunc<BaseT>)WrapMultiFunc<BaseT>.Factory(i); }
 
         public static implicit operator string(WrapMultiFunc<BaseT> i)
         {

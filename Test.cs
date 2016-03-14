@@ -177,7 +177,7 @@ namespace Formula
             OutS = "Second val of used changeable Func(Plus): T0() = {0}"; OutR();      
             R[10] = (int)WI;
             OutS = "Second val with use changeable Func through Func(Plus) = {0}"; OutR();          
-            I0 = 33;
+            I0 = 32;
             R[11] = (int)WI;
             OutS = "Third val with use changeable Func through Func(Plus change input val) = {0}"; OutR();
             //===---
@@ -203,7 +203,7 @@ namespace Formula
             Func<int> F1 = () => I1;
             Func<long> F2 = () => L0;
             WrapMultiFunc<int> MF = new WrapMultiFunc<int>();
-
+            MF = 12;
             MF.AddFunc("PlusFunc", ExtFO.FromFunc(MPlus_i__i_l, F0, F2));
             MF.AddFunc("PlusFunc2", ExtFO.FromFunc(MPlus_i__i_l, F1, F2, true));
             MF.AddFunc("MinusFunc", ExtFO.FromFunc(MMinus_i__i_l, F0, F2));
