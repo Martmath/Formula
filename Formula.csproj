@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ext\Equality.cs" />
     <Compile Include="Ext\Ext.cs" />
     <Compile Include="Ext\ExtC.cs" />
     <Compile Include="Ext\ExtF.cs" />

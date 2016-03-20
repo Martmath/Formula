@@ -9,7 +9,8 @@ namespace Formula
     {
         static void Main(string[] args)
         {
-            Ext.Test();
+            //(new Equality()).Test();
+            //Ext.Test();
             Test T = new Test();
             var M = T.GetType().GetMethods(Ext.AllBF).Where(x => x.Name.IndexOf("TestRun") == 0).ToList();
             M.ForEach(x => x.Invoke(T, null));

@@ -228,8 +228,19 @@ namespace Formula
                 { return (x) => FuncFunc<A, B,R>(a)(ACopy(x[0], x[1])); }
                 public static ActionPar DelegFunc<A, B, C,R>(Func<A, B, C, R> a)
                 { return (x) => FuncFunc<A, B, C,R>(a)(ACopy(x[0], x[1], x[2])); }
-            #endregion
-        #endregion       
+
+        public static Func<A, bool, B, bool, C, bool, R> FuncwithDefault<A, B, C, R>(Func<A, B, C, R> f, A a=default(A), B b = default(B), C c = default(C))
+        {
+            Func<A,bool, B,bool, C,bool, R> _f = (a_,Da, b_,Db, c_,Dc) =>
+            {      
+                A _a = Da? a:a_; B _b = Db ? b : b_; C _c = Dc ? c : c_;
+                return f(_a, _b,_c);
+            };
+            return _f;
+        }     
+
+        #endregion
+        #endregion
     }
     public abstract class ExtFO : ExtF<object> { }
 }

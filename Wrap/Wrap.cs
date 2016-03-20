@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace Formula
-{    
+{
     ///<summary>Base class wrapper for casting to formula and give methods for converting and creating</summary> 
     public abstract class Wrap<T, A> where A : Wrap<T, A>
     {
@@ -13,7 +17,7 @@ namespace Formula
         protected T Value;
         protected Func<object> Alive;
         public WType t;
-
+        protected Equality Eq= new Equality();
         public override string ToString()
         {
             return "{Value="+Value.ToString() + " t=" +Enum.GetName(typeof(WType), t)+" Alive="+
@@ -251,7 +255,9 @@ namespace Formula
         {           
             if (p.t == this.t)
             {
-                return p.GetHashCode() == this.GetHashCode();
+                return (t== WType.Val) ? Eq.EqualsDefault(this.Value, p.Value):
+                (p.GetHashCode() == this.GetHashCode());
+                // return p.GetHashCode() == this.GetHashCode();
             }
             return false;           
         }

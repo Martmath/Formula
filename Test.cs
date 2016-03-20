@@ -64,6 +64,10 @@ namespace Formula
             I0 = a; L0 = (long)a + b;
             return (int)L0;
         }
+        public int MPlus_i__i_l_d(int a, long b,double c)
+        {
+            return a + (int)b+(int)c;
+        }
         public static Func<object> OutRes(bool IL=true)
         {
             //var HF0 = new Func<string, object[], string>(String.Format);
@@ -132,6 +136,14 @@ namespace Formula
             R[7] = FF3(new object[] { 44, 7 });
             OutS = "(after minus I,L must be 44,37)";
             OutR();
+            //
+            var FF4 = ExtFO.FuncwithDefault(MPlus_i__i_l_d, 3, (long)4, 6.0);
+            R[8] = FF4(1, true, 2, false, 3, true);//true == default
+            var FF5 = ExtFO.FuncwithDefault(MPlus_i__i_l_d, 3, (long)4, 8.0);
+            R[9] = FF5(1, true, 2, false, 3, true);
+            R[10] = FF5(2, false, 2, false, 3, true);
+            R[11] = FF4(1, true, 3, false, 3, true);
+            //
             Console.ReadLine();
         }
 

@@ -38,18 +38,32 @@ namespace Formula
         { return (T)Enum.Parse(typeof(T), value, true); }
         public static string FromEnum<T>(T value)
         { return Enum.GetName(typeof(T), value); }
-        private static T Cast<T>(this object o)
+        public static bool Cast(object o, Type T,out object r)
         {
-            T d = default(T);
+            
+            object[] p = new object[] { o, null };
+            bool R =(bool)typeof(Ext).GetMethod("Cast",BindingFlags.Static| BindingFlags.NonPublic)
+                .MakeGenericMethod(T).Invoke(null, p);
+            r = p[1];
+            return R;
+        }
+        private static bool Cast<T>(object o,out object d)      
+        {
+            //d = default(T);
             try
             {
-                d = (T)o;
+                var ee = typeof(T);
+                d =(T)o;
+                return true;
             }
             catch (Exception ex)
             {
-            }
-            return d;
+                d = default(T);
+                return false;
+            }            
         }
+
+
         #region Maybenextarticle
         #region Sorting by some fields
         private class J<A, B> : Dictionary<A, B> where B :class
